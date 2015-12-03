@@ -23,6 +23,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         borderBody.categoryBitMask = 1
         borderBody.contactTestBitMask = 1
         self.physicsBody = borderBody
+        
+        let buttonNode = SKSpriteNode.init(color: UIColor.blueColor(), size: CGSize(width: 400,height: 100))
+        buttonNode.position = CGPoint(x:CGRectGetMidX(self.frame), y:(70));
+        buttonNode.name = "Button"
+        
+        self.addChild(buttonNode)
+
     }
     
     func didBeginContact(contact: SKPhysicsContact) {
@@ -48,11 +55,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             addChild(fire)
         }
         
-        let buttonNode = SKSpriteNode.init(color: UIColor.blueColor(), size: CGSize(width: 400,height: 100))
-        buttonNode.position = CGPoint(x:CGRectGetMidX(self.frame), y:(70));
-        buttonNode.name = "Button"
-        
-        self.addChild(buttonNode)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -74,7 +76,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 sprite.name = "ball"
                 sprite.position = location //CGPointMake(self.frame.size.width/3, self.frame.size.height/3)
                 sprite.physicsBody = SKPhysicsBody(circleOfRadius: sprite.frame.size.width/2)
-                sprite.physicsBody?.friction = 0
+                sprite.physicsBody?.friction = 0.5
                 sprite.physicsBody?.restitution = 1.0
                 sprite.physicsBody?.linearDamping = 0
                 sprite.physicsBody?.allowsRotation = true
