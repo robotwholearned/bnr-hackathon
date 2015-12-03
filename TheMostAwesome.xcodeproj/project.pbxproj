@@ -14,8 +14,8 @@
 		932A26B61C10D5F20040018A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 932A26B41C10D5F20040018A /* Main.storyboard */; };
 		932A26B81C10D5F20040018A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 932A26B71C10D5F20040018A /* Assets.xcassets */; };
 		932A26BB1C10D5F20040018A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 932A26B91C10D5F20040018A /* LaunchScreen.storyboard */; };
-		93E2E33D1C10EE0C00E5B0BF /* SceneKit Particle System.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 93E2E33B1C10EE0C00E5B0BF /* SceneKit Particle System.scnp */; };
-		93E2E33E1C10EE0C00E5B0BF /* confetti.png in Resources */ = {isa = PBXBuildFile; fileRef = 93E2E33C1C10EE0C00E5B0BF /* confetti.png */; };
+		93E2E3491C10EF9200E5B0BF /* SceneKit Particle System.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 93E2E3471C10EF9200E5B0BF /* SceneKit Particle System.scnp */; };
+		93E2E34A1C10EF9200E5B0BF /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 93E2E3481C10EF9200E5B0BF /* spark.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,8 +28,8 @@
 		932A26B71C10D5F20040018A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		932A26BA1C10D5F20040018A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		932A26BC1C10D5F20040018A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		93E2E33B1C10EE0C00E5B0BF /* SceneKit Particle System.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = "SceneKit Particle System.scnp"; sourceTree = "<group>"; };
-		93E2E33C1C10EE0C00E5B0BF /* confetti.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = confetti.png; sourceTree = "<group>"; };
+		93E2E3471C10EF9200E5B0BF /* SceneKit Particle System.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = "SceneKit Particle System.scnp"; sourceTree = "<group>"; };
+		93E2E3481C10EF9200E5B0BF /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,14 +66,22 @@
 				932A26AE1C10D5F20040018A /* GameScene.sks */,
 				932A26B01C10D5F20040018A /* GameScene.swift */,
 				932A26B21C10D5F20040018A /* GameViewController.swift */,
-				93E2E33B1C10EE0C00E5B0BF /* SceneKit Particle System.scnp */,
-				93E2E33C1C10EE0C00E5B0BF /* confetti.png */,
 				932A26B41C10D5F20040018A /* Main.storyboard */,
+				93E2E34B1C10EF9C00E5B0BF /* Particle */,
 				932A26B71C10D5F20040018A /* Assets.xcassets */,
 				932A26B91C10D5F20040018A /* LaunchScreen.storyboard */,
 				932A26BC1C10D5F20040018A /* Info.plist */,
 			);
 			path = TheMostAwesome;
+			sourceTree = "<group>";
+		};
+		93E2E34B1C10EF9C00E5B0BF /* Particle */ = {
+			isa = PBXGroup;
+			children = (
+				93E2E3471C10EF9200E5B0BF /* SceneKit Particle System.scnp */,
+				93E2E3481C10EF9200E5B0BF /* spark.png */,
+			);
+			name = Particle;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,11 +143,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				932A26AF1C10D5F20040018A /* GameScene.sks in Resources */,
+				93E2E34A1C10EF9200E5B0BF /* spark.png in Resources */,
 				932A26BB1C10D5F20040018A /* LaunchScreen.storyboard in Resources */,
 				932A26B81C10D5F20040018A /* Assets.xcassets in Resources */,
-				93E2E33D1C10EE0C00E5B0BF /* SceneKit Particle System.scnp in Resources */,
+				93E2E3491C10EF9200E5B0BF /* SceneKit Particle System.scnp in Resources */,
 				932A26B61C10D5F20040018A /* Main.storyboard in Resources */,
-				93E2E33E1C10EE0C00E5B0BF /* confetti.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
