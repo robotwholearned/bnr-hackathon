@@ -43,6 +43,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         removeChildrenInArray([firstBody.node!, secondBody.node!])
         
+        if let fire = SKEmitterNode(fileNamed: "MyParticle.sks"){
+            fire.position = firstBody.node!.position
+            addChild(fire)
+        }
+        
         print("yayayayayay")
         
     }
