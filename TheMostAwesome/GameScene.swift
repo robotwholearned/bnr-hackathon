@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         let myLabel = SKLabelNode(fontNamed:"Chalkduster")
@@ -17,16 +17,34 @@ class GameScene: SKScene {
         myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
         
         self.physicsWorld.gravity = CGVector(dx: 0, dy: -9.81)
-        
+        self.physicsWorld.contactDelegate = self
         let borderBody = SKPhysicsBody(edgeLoopFromRect: self.frame)
         borderBody.friction = 0.0
+        borderBody.categoryBitMask = 1
+        borderBody.contactTestBitMask = 1
         self.physicsBody = borderBody
+    }
+    
+    func didBeginContact(contact: SKPhysicsContact) {
+    
+        print("contact detected")
+        var firstBody:SKPhysicsBody
+        var secondBody:SKPhysicsBody
         
+        if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask)
+        {
+            firstBody = contact.bodyA;
+            secondBody = contact.bodyB;
+        }
+        else
+        {
+            firstBody = contact.bodyB;
+            secondBody = contact.bodyA;
+        }
+        removeChildrenInArray([firstBody.node!, secondBody.node!])
         
-        /*let ballNode = SKSpriteNode.init(color: UIColor.blueColor(), size: CGSize(width: 10,height: 10))
-        ballNode.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
+        print("yayayayayay")
         
-        self.addChild(ballNode)*/
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -47,7 +65,8 @@ class GameScene: SKScene {
                 sprite.physicsBody?.linearDamping = 0
                 sprite.physicsBody?.allowsRotation = true
                 sprite.physicsBody?.applyImpulse(CGVector(dx: 10.0, dy: -10.0))
-                
+                sprite.physicsBody?.categoryBitMask = 2
+                sprite.physicsBody?.contactTestBitMask = 2
                 self.addChild(sprite)
                 
                 addAnAction(sprite)
