@@ -26,7 +26,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func didBeginContact(contact: SKPhysicsContact) {
-    
+        
         print("contact detected")
         var firstBody:SKPhysicsBody
         var secondBody:SKPhysicsBody
@@ -43,20 +43,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         removeChildrenInArray([firstBody.node!, secondBody.node!])
         
-        if let fire = SKEmitterNode(fileNamed: "MyParticle.sks"){
+        if let fire = SKEmitterNode(fileNamed: "FireParticle.sks"){
             fire.position = firstBody.node!.position
             addChild(fire)
         }
         
-        print("yayayayayay")
+        let buttonNode = SKSpriteNode.init(color: UIColor.blueColor(), size: CGSize(width: 400,height: 100))
+        buttonNode.position = CGPoint(x:CGRectGetMidX(self.frame), y:(70));
+        buttonNode.name = "Button"
         
+        self.addChild(buttonNode)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-       /* Called when a touch begins */
+        /* Called when a touch begins */
+        
+        for touch in touches {
+            let location = touch.locationInNode(self)
+            let nodeTouched = self.nodeAtPoint(location)
             
-            for touch in touches {
-                let location = touch.locationInNode(self)
+            if (nodeTouched.name == "Button") {
+                print("Button Pressed")
+                // Do cool stuff here!!!!
+            } else {
                 
                 let sprite = SKSpriteNode(imageNamed:"Golfball")
                 
@@ -76,6 +85,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 addAnAction(sprite)
                 addAction2(sprite)
+            }
         }
     }
     
@@ -88,7 +98,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let action2 = SKAction.moveBy(vector, duration: 2.0)
         sprite.runAction(SKAction.repeatActionForever(action2))
     }
-   
+    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
     }
