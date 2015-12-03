@@ -16,7 +16,10 @@ class GameScene: SKScene {
         myLabel.fontSize = 45;
         myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
         
-        self.addChild(myLabel)
+        let ballNode = SKSpriteNode.init(color: UIColor.blueColor(), size: CGSize(width: 10,height: 10))
+        ballNode.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
+        
+        self.addChild(ballNode)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
