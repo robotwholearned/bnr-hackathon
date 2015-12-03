@@ -9,13 +9,10 @@
 import SpriteKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
+                var gravDirection = 0
+    
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
-        let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-        myLabel.text = "Hello, World!";
-        myLabel.fontSize = 45;
-        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
-        
         self.physicsWorld.gravity = CGVector(dx: 0, dy: -9.81)
         self.physicsWorld.contactDelegate = self
         let borderBody = SKPhysicsBody(edgeLoopFromRect: self.frame)
@@ -29,7 +26,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         buttonNode.name = "Button"
         
         self.addChild(buttonNode)
-
+        
+        let myLabel = SKLabelNode(fontNamed:"Chalkduster")
+        myLabel.text = "Gravity Switch";
+        myLabel.name = "Text"
+        myLabel.fontSize = 45;
+        myLabel.position = buttonNode.position
+        
+        self.addChild(myLabel)
     }
     
     func didBeginContact(contact: SKPhysicsContact) {
@@ -63,10 +67,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         for touch in touches {
             let location = touch.locationInNode(self)
             let nodeTouched = self.nodeAtPoint(location)
+
             
-            if (nodeTouched.name == "Button") {
-                print("Button Pressed")
-                // Do cool stuff here!!!!
+            if (nodeTouched.name == "Button" || nodeTouched.name == "Text") {
+                switch (gravDirection%4) {
+                case 0:
+                    self.physicsWorld.gravity = CGVector(dx: 0, dy: -9.81)
+                    break
+                case 1:
+                    self.physicsWorld.gravity = CGVector(dx: 9.81, dy: 0)
+                    break
+                case 2:
+                    self.physicsWorld.gravity = CGVector(dx: 0, dy: 9.81)
+                    break
+                case 3:
+                    self.physicsWorld.gravity = CGVector(dx: -9.81, dy: 0)
+                    break
+                default:
+                    break
+                }
+                gravDirection++
             } else {
                 
                 let sprite = SKSpriteNode(imageNamed:"Golfball")
@@ -76,7 +96,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 sprite.name = "ball"
                 sprite.position = location //CGPointMake(self.frame.size.width/3, self.frame.size.height/3)
                 sprite.physicsBody = SKPhysicsBody(circleOfRadius: sprite.frame.size.width/2)
-                sprite.physicsBody?.friction = 0.5
+                sprite.physicsBody?.friction = 0
                 sprite.physicsBody?.restitution = 1.0
                 sprite.physicsBody?.linearDamping = 0
                 sprite.physicsBody?.allowsRotation = true
